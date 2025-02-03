@@ -1,0 +1,26 @@
+﻿@model List<Hospital>
+
+	<div class="mt-5">
+		<h1 style="margin-top: 70px">Hospitales SQL Server</h1>
+
+		<table class="table table-bordered mt-4">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Dirección</th>
+					<th>Teléfono</th>
+					<th>Detalles</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (Hospital hospital in Model){
+					<tr>
+						<td>@hospital.Nombre</td>
+						<td>@hospital.Direccion</td>
+						<td>@hospital.Telefono</td>
+						<td>@Html.ActionLink("Details","Details", "Hospitales", new {id =@hospital.IdHospital})</td> @*el id se llama asi porque esta igual en el controller, sino daria fallo*@
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>

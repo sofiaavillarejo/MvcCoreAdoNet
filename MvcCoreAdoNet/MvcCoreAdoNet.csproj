@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\js\bootstrap-grid.css" />
+    <Content Remove="wwwroot\js\bootstrap-reboot.css" />
+    <Content Remove="wwwroot\js\bootstrap-utilities.css" />
+    <Content Remove="wwwroot\js\bootstrap.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />
   </ItemGroup>
 

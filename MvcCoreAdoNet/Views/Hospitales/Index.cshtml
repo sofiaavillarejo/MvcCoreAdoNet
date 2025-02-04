@@ -10,6 +10,7 @@
 					<th>Dirección</th>
 					<th>Teléfono</th>
 					<th>Detalles</th>
+					<th>Modificar</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -19,6 +20,8 @@
 						<td>@hospital.Direccion</td>
 						<td>@hospital.Telefono</td>
 						<td>@Html.ActionLink("Details","Details", "Hospitales", new {id =@hospital.IdHospital})</td> @*el id se llama asi porque esta igual en el controller, sino daria fallo*@
+						<td>@Html.ActionLink("Edit", "Update", "Hospitales", new { id = @hospital.IdHospital })</td>
+						<td>@Html.ActionLink("Delete", "Delete", "Hospitales", new { id = @hospital.IdHospital })</td>
 					</tr>
 				}
 			</tbody>

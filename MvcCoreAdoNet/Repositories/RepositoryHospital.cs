@@ -61,5 +61,49 @@ namespace MvcCoreAdoNet.Repositories
             this.com.Parameters.Clear();
             return hospital;
         }
+
+        public void CreateHospital (int idHospital, string nombre, string direccion, string telefono, int camas)
+        {
+            string sql = "insert into HOSPITAL values(@idhospital, @nombre, @direccion, @telefono, @camas)";
+            this.com.Parameters.AddWithValue("@idhospital", idHospital);
+            this.com.Parameters.AddWithValue("@nombre", nombre);
+            this.com.Parameters.AddWithValue("@direccion", direccion);
+            this.com.Parameters.AddWithValue("@telefono", telefono);
+            this.com.Parameters.AddWithValue("@camas", camas);
+            this.com.CommandType = System.Data.CommandType.Text;
+            this.com.CommandText = sql;
+            this.cn.Open();
+            this.com.ExecuteNonQuery(); //como no voy a devolver nada, ejecutamos la consulta directamente
+            this.cn.Close();
+            this.com.Parameters.Clear();
+        }
+
+        public void UpdateHospital(int idHospital, string nombre, string direccion, string telefono, int camas)
+        {
+            string sql = "update HOSPITAL set NOMBRE=@nombre, DIRECCION=@direccion, TELEFONO=@telefono, NUM_CAMA=@camas where HOSPITAL_COD=@idhospital";
+            this.com.Parameters.AddWithValue("@nombre", nombre);
+            this.com.Parameters.AddWithValue("@direccion", direccion);
+            this.com.Parameters.AddWithValue("@telefono", telefono);
+            this.com.Parameters.AddWithValue("@camas", camas);
+            this.com.Parameters.AddWithValue("@idhospital", idHospital);
+            this.com.CommandType = System.Data.CommandType.Text;
+            this.com.CommandText = sql;
+            this.cn.Open();
+            this.com.ExecuteNonQuery();
+            this.cn.Close();
+            this.com.Parameters.Clear();
+        }
+
+        public void DeleteHospital (int idHospital)
+        {
+            string sql = "delete from HOPSITAL where HOSPITAL_COD=@idhospital";
+            this.com.Parameters.AddWithValue("@idhospital", idHospital);
+            this.com.CommandType = System.Data.CommandType.Text;
+            this.com.CommandText = sql;
+            this.cn.Open();
+            this.com.ExecuteNonQuery();
+            this.cn.Close();
+            this.com.Parameters.Clear();
+        }
     }
 }

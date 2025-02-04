@@ -21,5 +21,40 @@ namespace MvcCoreAdoNet.Controllers
             Hospital hospital = this.repo.FindHospital(id);
             return View(hospital);
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Hospital hospital)
+        {
+            this.repo.CreateHospital(hospital.IdHospital, hospital.Nombre, hospital.Direccion, hospital.Telefono, hospital.Camas);
+            ViewData["MENSAJE"] = "Hospital ingresado";
+            //esto nos lleva a Index.cshtml de nuestro controller hospitalesController
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Update(int id)
+        {
+            //buscamos el hospital por su id y lo devolvemos para pintarlo.
+            Hospital hospital = this.repo.FindHospital(id);
+            return View(hospital);
+        }
+
+        [HttpPost]
+        public IActionResult Update(Hospital hospital)
+        {
+            this.repo.UpdateHospital(hospital.IdHospital, hospital.Nombre, hospital.Direccion, hospital.Telefono, hospital.Camas);
+            ViewData["MENSAJE"] = "Hospital modificado";
+            return View(hospital);
+        }
+
+        public IActionResult Delete (int id)
+        {
+            this.repo.DeleteHospital(id);
+            return RedirectToAction("Index");//lo envio a Index para que lo lea
+        }
     }
 }

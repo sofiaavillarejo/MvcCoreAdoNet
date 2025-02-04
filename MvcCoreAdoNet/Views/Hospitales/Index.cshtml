@@ -19,9 +19,12 @@
 						<td>@hospital.Nombre</td>
 						<td>@hospital.Direccion</td>
 						<td>@hospital.Telefono</td>
-						<td>@Html.ActionLink("Details","Details", "Hospitales", new {id =@hospital.IdHospital})</td> @*el id se llama asi porque esta igual en el controller, sino daria fallo*@
+						@* enviar info con tag helpers *@
+					<td><a asp-controller="Hospitales" asp-action="Details" asp-route-id="@hospital.IdHospital" class="btn btn-bd-primary">Details</a></td>
+						@* <td>@Html.ActionLink("Details","Details", "Hospitales", new {id =@hospital.IdHospital})</td> @*el id se llama asi porque esta igual en el controller, sino daria fallo*@
 						<td>@Html.ActionLink("Edit", "Update", "Hospitales", new { id = @hospital.IdHospital })</td>
 						<td>@Html.ActionLink("Delete", "Delete", "Hospitales", new { id = @hospital.IdHospital })</td>
+					
 					</tr>
 				}
 			</tbody>
